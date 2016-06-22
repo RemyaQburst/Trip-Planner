@@ -2,21 +2,21 @@
 	<div class="row text-center">
 		<h1>Trip Planner</h1>
 	</div>
-	<form>
+	<form name="tripForm">
 		<div class="col-xs-12 col-sm-6 col-md-8 col-md-offset-2 form-group">
 			<label>Boarding</label>
-			<input type="text" class="form-control">
+			<input type="text" class="form-control" name="boardingPoint" ng-model="boardingPoint" required>
 		</div>
 		<div class="col-xs-12 col-sm-6 col-md-8 col-md-offset-2 form-group">
 			<label>Destination</label>
-			<input type="text" class="form-control">
+			<input type="text" class="form-control" name="destination" ng-model="destination" required>
 		</div>
 		<div class="col-xs-12 col-sm-6 col-md-8 col-md-offset-2 form-group">
 			<label>No of stops</label>
-			<input type="number" class="form-control">
+			<input type="number" class="form-control" ng-model="noofStops" required>
 		</div>
 		<div class="col-xs-12 col-sm-6 col-md-8 col-md-offset-2 form-group text-center">
-			<button type="submit" class="btn btn-default">Submit</button>
+			<button type="submit" class="btn btn-default submitBtn">Submit</button>
 		</div>
 	</form>
 </div>
