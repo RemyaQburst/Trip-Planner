@@ -8,7 +8,8 @@
                     url: '/',
                     views: {
                         'content': {
-                            templateUrl: 'app/partials/trip.html'
+                            templateUrl: 'app/partials/trip.html',
+                            controller: 'tripCtrl'
                         }
                     }
                 })

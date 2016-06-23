@@ -2,21 +2,33 @@
 	<div class="row text-center">
 		<h1>Trip Planner</h1>
 	</div>
-	<form name="tripForm">
+	<form name="tripForm" ng-submit="drawTable()">
 		<div class="col-xs-12 col-sm-6 col-md-8 col-md-offset-2 form-group">
 			<label>Boarding</label>
-			<input type="text" class="form-control" name="boardingPoint" ng-model="boardingPoint" required>
+			<input type="text" class="form-control" name="boardingPoint" ng-model="trip.boardingPoint" required>
 		</div>
 		<div class="col-xs-12 col-sm-6 col-md-8 col-md-offset-2 form-group">
 			<label>Destination</label>
-			<input type="text" class="form-control" name="destination" ng-model="destination" required>
+			<input type="text" class="form-control" name="destination" ng-model="trip.destination" required>
 		</div>
 		<div class="col-xs-12 col-sm-6 col-md-8 col-md-offset-2 form-group">
 			<label>No of stops</label>
-			<input type="number" class="form-control" ng-model="noofStops" required>
+			<input type="number" class="form-control" ng-model="trip.noofStops" required>
 		</div>
 		<div class="col-xs-12 col-sm-6 col-md-8 col-md-offset-2 form-group text-center">
 			<button type="submit" class="btn btn-default submitBtn">Submit</button>
 		</div>
 	</form>
+	<table ng-table="vm.tableParams" class="table">
+	    <tr ng-repeat="tripData in tableData track by $index">
+	        <td title="'BoardingPoint'" sortable="'BoardingPoint'">
+	            <input type="text" ng-model="tripData.boardingPoint" ng-blur="updateDestination(tripData,$index)"></td>
+	        <td title="'Destination'" sortable="'Destination'">
+	            <input type="text" ng-model="tripData.destination" ng-blur="updateBoarding(tripData,$index)"></td>
+	        <td title="''">
+	        	<button class="btn btn-default" ng-click="addRow(tripData,$index)">+</button>
+	        	<button class="btn btn-default" ng-click="delRow(tripData,$index)" ng-hide="$index==0">-</button>
+	        </td>
+	    </tr>
+	</table>
 </div>
