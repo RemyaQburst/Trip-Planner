@@ -43,7 +43,7 @@ function tripCtrl($scope) {
 			//$scope.tableData[index].boardingPoint = "";
 			//$scope.tableData[index-1].destination = "";
 			$scope.tableData.splice( index, 1 );
-			$scope.tableData[index].boardingPoint = trip.boardingPoint;
+			$scope.tableData[index-1].destination = trip.destination;
 		}
 	}
 }
