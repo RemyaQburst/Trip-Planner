@@ -28,8 +28,8 @@
 	        <td title="'Destination'" sortable="'Destination'">
 	            <input type="text" ng-model="tripData.destination" ng-blur="updateBoarding(tripData,$index)"></td>
 	        <td title="''">
-	        	<button class="btn btn-default" ng-click="addRow(tripData,$index)">+</button>
-	        	<button class="btn btn-default" ng-click="delRow(tripData,$index)" ng-hide="$index==0">-</button>
+	        	<button class="btn btn-success" ng-click="addRow(tripData,$index)">+</button>
+	        	<button class="btn btn-danger" ng-click="delRow(tripData,$index)" ng-hide="$index==0">-</button>
 	        </td>
 	    </tr>
 	</table>
