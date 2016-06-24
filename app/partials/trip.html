@@ -21,6 +21,8 @@
 	</form>
 	<table ng-table="vm.tableParams" class="table">
 	    <tr ng-repeat="tripData in tableData track by $index">
+	    	 <td title="'Stops'" sortable="'Stops'" class="text-center">
+	            <span>{{$index+1}}</span></td>
 	        <td title="'BoardingPoint'" sortable="'BoardingPoint'">
 	            <input type="text" ng-model="tripData.boardingPoint" ng-blur="updateDestination(tripData,$index)"></td>
 	        <td title="'Destination'" sortable="'Destination'">
