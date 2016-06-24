@@ -1,6 +1,9 @@
 (function () {
     'use strict';
-function tripCtrl($scope) {
+angular.module('tripApp')
+        .controller('tripCtrl', tripCtrl);
+tripCtrl.$inject = ["$scope","NgTableParams"];
+function tripCtrl($scope,NgTableParams) {
 	$scope.trip ={};
 	$scope.drawTable = function(){
 		$scope.tableData = [];
@@ -10,7 +13,8 @@ function tripCtrl($scope) {
 		}
 		$scope.tableData[0].boardingPoint = $scope.trip.boardingPoint;
 		$scope.tableData[stopCount-1].destination = $scope.trip.destination;
-		console.log($scope.tableData)
+		updateCount();
+		$scope.tableParams = new NgTableParams({ sorting: { stop: "asc" } }, { dataset: $scope.tableData});
 	}
 	$scope.updateDestination = function(trip,index) {
 		if(index!=0) {
@@ -23,7 +27,6 @@ function tripCtrl($scope) {
 		}
 	}
 	$scope.addRow = function(trip,index) {
-		console.log(trip,index);
 		var dest = $scope.tableData[index].destination;
 		if(dest==""&&dest==null) {
 			dest="";
@@ -36,17 +39,22 @@ function tripCtrl($scope) {
 			$scope.tableData[index].destination = "";
 			$scope.tableData.splice(index+1,0,{boardingPoint:"",destination:dest});
 		}
-		console.log($scope.tableData)
+		updateCount();
+		$scope.tableParams.reload();
 	}
 	$scope.delRow = function(trip,index) {
 		if(index!=0) {
-			//$scope.tableData[index].boardingPoint = "";
-			//$scope.tableData[index-1].destination = "";
 			$scope.tableData.splice( index, 1 );
 			$scope.tableData[index-1].destination = trip.destination;
+			updateCount();
+			$scope.tableParams.reload();
+		}
+	}
+	function updateCount() {
+		for(var i=0;i<$scope.tableData.length;i++) {
+			$scope.tableData[i].stop = i;
 		}
 	}
 }
-angular.module('tripApp')
-        .controller('tripCtrl', tripCtrl);
+
 })();
